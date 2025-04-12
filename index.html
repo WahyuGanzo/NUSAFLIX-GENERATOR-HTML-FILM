@@ -1,0 +1,134 @@
+<!DOCTYPE html><html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYbYkYC28YnyflIxfHI6IAAW-RDA-0_9h0nqC38-tqLlimZrr-AAAeDlwinbqZ-Pk9pb_BMTdhMsnNOiMJMAduJpFH0N3GrSyCeJziyEWYUXPVGKPAMmBqoiTdpnGEWp67DLbw_56LwKtA-bJIi6bDP3yNUDJjBFV8kvmB4EmUjGBnbl88UhxoMzGtZog/s600/20250405_130635.jpg" type="image/x-icon">
+  <title>NUSAFLIX GENERATOR HTML FILM</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 30px;
+      background: #333;
+      color: #333;
+    }
+    h1 {
+      color: #e40c4c;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #f1ba23;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 2px solid #f1ba23;
+      font-size: 15px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      background: #e40c4c;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #c30a42;
+    }
+    button.copy {
+      background: #f1ba23;
+      color: #333;
+    }
+    button.copy:hover {
+      background: #d1a019;
+    }
+    pre {
+      background: #f8f8f8;
+      padding: 20px;
+      margin-top: 25px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    .logonusaflix img {
+      width: 100%;
+      max-width: 500px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="logonusaflix">
+    <img src="https://nusaflix.my.id/logo.png" alt="logo nusaflix">
+  </div>
+
+
+<h1>NUSAFLIX GENERATOR HTML FILM</h1><label>Judul Film</label> <input type="text" id="judul" />
+
+<label>Genre</label> <input type="text" id="genre" />
+
+<label>Link Poster (Gambar)</label> <input type="text" id="poster" />
+
+<label>Link Iframe Player</label> <input type="text" id="iframe" />
+
+<label>Link Download</label> <input type="text" id="download" />
+
+<label>Sinopsis</label>
+
+  <textarea id="sinopsis" rows="5"></textarea><button onclick="generateHTML()">Generate HTML</button> <button class="copy" onclick="copyToClipboard()">Copy to Clipboard</button>
+
+  <pre id="output"></pre>  <script>
+    function generateHTML() {
+      const judul = document.getElementById('judul').value;
+      const genre = document.getElementById('genre').value;
+      const poster = document.getElementById('poster').value;
+      const iframe = document.getElementById('iframe').value;
+      const download= document.getElementById('download').value;
+      const sinopsis = document.getElementById('sinopsis').value;
+
+      const html = `
+<h3 style="text-align: center;">Nonton ${judul} Film Subtitle Indonesia - Streaming / Download Full HD</h3>
+<iframe allowfullscreen="true" frameborder="0" scrolling="0" src="${iframe}" class="areanonton"></iframe><br>
+
+<a href="${download}" target="_blank">
+    <button class="tomboldownload">Download Film</button>
+  </a><br>
+
+  <div class="infonusaflix">
+    <div class="poster-nusaflix">
+      <img src="${poster}" alt="Poster Nusaflix">
+    </div>
+    <div class="detail-nusaflix">
+      <h2 class="judul-nusaflix">${judul}</h2>
+      <p class="genre-nusaflix">Genre: ${genre}</p>
+      <p class="sinopsis-nusaflix">
+        ${sinopsis}
+      </p>
+    </div>
+  </div>`;
+
+      document.getElementById('output').textContent = html;
+    }
+
+    function copyToClipboard() {
+      const text = document.getElementById('output').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        alert('HTML berhasil disalin!');
+      }, () => {
+        alert('Gagal menyalin. Coba manual.');
+      });
+    }
+  </script></body>
+</html>
