@@ -47,6 +47,11 @@
       background: #f1ba23;
       color: #333;
     }
+    button.reset-series {
+      background: red;
+      color: white;
+      margin-left: 10px;
+    }
     button.copy:hover {
       background: #d1a019;
     }
@@ -88,6 +93,8 @@
 <label>Sinopsis</label>
 
   <textarea id="sinopsis" rows="5"></textarea><button onclick="generateHTML()">Generate HTML</button> <button class="copy" onclick="copyToClipboard()">Copy to Clipboard</button>
+  <button class="reset" onclick="location.reload();">Reset Page</button>
+  <button class="reset-series" onclick="window.location.href='addseries.html'">Series Mode</button>
 
   <pre id="output"></pre>  <script>
     function generateHTML() {

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYbYkYC28YnyflIxfHI6IAAW-RDA-0_9h0nqC38-tqLlimZrr-AAAeDlwinbqZ-Pk9pb_BMTdhMsnNOiMJMAduJpFH0N3GrSyCeJziyEWYUXPVGKPAMmBqoiTdpnGEWp67DLbw_56LwKtA-bJIi6bDP3yNUDJjBFV8kvmB4EmUjGBnbl88UhxoMzGtZog/s600/20250405_130635.jpg" type="image/x-icon">
+  <title>NUSAFLIX GENERATOR HTML FILM SERIES</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #333;
+      color: #333;
+      padding: 20px;
+    }
+    h1 {
+      color: #e40c4c;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+      color: #f1ba23;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 2px solid #f1ba23;
+      border-radius: 5px;
+    }
+    .episode-input {
+      margin-top: 10px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #e40c4c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #c20b3f;
+    }
+    button.copy {
+      background: #f1ba23;
+      color: #333;
+      margin-left: 10px;
+    }
+    button.reset {
+      background: red;
+      color: white;
+      margin-left: 10px;
+    }
+    pre {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #f4f4f4;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .logonusaflix img {
+      width: 100%;
+      max-width: 500px;
+    }
+  </style>
+</head>
+<body>
+  <div class="logonusaflix">
+    <img src="https://nusaflix.my.id/logo.png" alt="logo nusaflix">
+  </div>
+
+
+  <h1>NUSAFLIX GENERATOR HTML FILM SERIES</h1>
+
+  <label>Judul Film</label>
+  <input type="text" id="judul">
+
+  <label>Genre</label>
+  <input type="text" id="genre">
+
+  <label>Sinopsis</label>
+  <textarea id="sinopsis" rows="4"></textarea>
+
+  <label>Link Poster</label>
+  <input type="text" id="poster">
+
+  <label>Link Trailer (Iframe)</label>
+  <input type="text" id="trailer">
+
+  <label>Link Halaman Download</label>
+  <input type="text" id="download">
+
+  <label>Link Video per Episode (klik tombol untuk tambah)</label>
+  <div id="episodeInputs"></div>
+  <button type="button" id="addEpisodeBtn">+ Tambah Episode</button>
+
+  <br>
+  <button onclick="generateHTML()">Generate HTML</button>
+  <button class="copy" onclick="copyToClipboard()">Copy to Clipboard</button>
+  <button class="reset" onclick="location.reload();">Reset Page</button>
+
+  <pre id="output"></pre>
+
+  <script>
+    let episodeCount = 0;
+
+    function addEpisodeInput() {
+      episodeCount++;
+      const container = document.getElementById('episodeInputs');
+      const div = document.createElement('div');
+      div.className = 'episode-input';
+      div.innerHTML = `<label>Episode ${episodeCount}</label><input type="text" class="episode" placeholder="Link Episode ${episodeCount}">`;
+      container.appendChild(div);
+    }
+
+    document.getElementById('addEpisodeBtn').addEventListener('click', addEpisodeInput);
+
+    window.onload = () => {
+      episodeCount = 0;
+      document.getElementById('episodeInputs').innerHTML = '';
+      for (let i = 0; i < 1; i++) addEpisodeInput();
+    }
+
+    function generateHTML() {
+      const judul = document.getElementById('judul').value;
+      const genre = document.getElementById('genre').value;
+      const sinopsis = document.getElementById('sinopsis').value;
+      const poster = document.getElementById('poster').value;
+      const trailer = document.getElementById('trailer').value;
+      const download = document.getElementById('download').value;
+      const episodeLinks = [...document.querySelectorAll('.episode')].map(e => e.value).filter(e => e.trim() !== '');
+
+      let buttonsHTML = '';
+      episodeLinks.forEach((link, i) => {
+        buttonsHTML += `<button class=\"episode-button\" onclick=\"changeVideo(this, '${link}')\">E${i+1}</button>\n`;
+      });
+
+      const html = `
+<h3 style=\"text-align: center;\">${judul}</h3>
+<div class=\"video-container\">
+  <iframe id=\"videoPlayer\" class=\"areanonton\" src=\"${trailer}\" title=\"NUSAFLIX video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>
+</div>
+
+<div class=\"wadahbuttonepisode\">
+  <h2 style=\"text-align: center;color:white;\">Silahkan Pilih Episode</h2><br>
+  <h4 style=\"text-align: left;color:white;\">Nonton Film ${judul} Subtitle Indonesia Streaming / Download Full HD</h4>
+  <div class=\"button-container\">
+    ${buttonsHTML}
+  </div><br>
+
+  <a href=\"${download}\" target=\"_blank\">
+    <button class=\"tomboldownload\">Download Film</button>
+  </a><br>
+
+  <div class=\"infonusaflix\">
+    <div class=\"poster-nusaflix\">
+      <img src=\"${poster}\" alt=\"Poster Film NUSAFLIX\">
+    </div>
+    <div class=\"detail-nusaflix\">
+      <h2 class=\"judul-nusaflix\">${judul}</h2>
+      <p class=\"genre-nusaflix\">Genre: ${genre}</p>
+      <p class=\"sinopsis-nusaflix\">${sinopsis}</p>
+    </div>
+  </div>
+</div>
+
+<script>
+    function changeVideo(button, url) {
+        document.getElementById('videoPlayer').src = url;
+        
+        let buttons = document.querySelectorAll('.episode-button');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        
+        button.classList.add('active');
+    }
+<script>`;
+
+      document.getElementById('output').textContent = html;
+    }
+
+    function copyToClipboard() {
+      const text = document.getElementById('output').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        alert('HTML berhasil disalin!');
+      });
+    }
+  </script>
+</body>
+</html>
