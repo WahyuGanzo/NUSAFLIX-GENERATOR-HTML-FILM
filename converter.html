@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYbYkYC28YnyflIxfHI6IAAW-RDA-0_9h0nqC38-tqLlimZrr-AAAeDlwinbqZ-Pk9pb_BMTdhMsnNOiMJMAduJpFH0N3GrSyCeJziyEWYUXPVGKPAMmBqoiTdpnGEWp67DLbw_56LwKtA-bJIi6bDP3yNUDJjBFV8kvmB4EmUjGBnbl88UhxoMzGtZog/s600/20250405_130635.jpg" type="image/x-icon">
+  <title>NUSAFLIX - Link Converter</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #333;
+      color: #f1ba23;
+    }
+
+    header {
+      background-color: #e40c4c;
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+
+    .container {
+      padding: 30px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      resize: vertical;
+      background-color: #222;
+      color: #f1ba23;
+    }
+
+    button {
+      background-color: #c20b3f;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #e40c4c;
+    }
+
+    .footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 14px;
+      color: #999;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: #f1ba23;
+    }
+
+    .logo {
+        width: 100%;
+        max-width: 600px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img class="logo" src="https://nusaflix.my.id/logo.png" alt="">
+  </header>
+
+  <div class="container">
+    <label for="input">Paste playeriframe.lol links below:</label>
+    <textarea id="input" rows="6" placeholder="https://playeriframe.lol/?url=https%3A%2F%2Fshort.ink%2F..."></textarea>
+
+    <button onclick="convertLinks()">Convert Links</button>
+
+    <label for="output">Converted links:</label>
+    <textarea id="output" rows="6" readonly placeholder="Converted links will appear here..."></textarea>
+
+    <div class="footer">Iframe Converter Tool by Wahyu Ganzo ⚙️</div>
+  </div>
+
+  <script>
+    function convertLinks() {
+      const input = document.getElementById('input').value;
+      const links = input.split(/\s+/);
+      const converted = links.map(link => {
+        try {
+          const url = new URL(link);
+          const realUrl = decodeURIComponent(url.searchParams.get('url'));
+          if (realUrl.includes('short.ink')) {
+            return realUrl.replace('short.ink', 'short.icu');
+          } else if (realUrl.includes('short.icu')) {
+            return realUrl;
+          }
+        } catch (e) {
+          return '';
+        }
+        return '';
+      }).filter(Boolean).join('\n');
+
+      document.getElementById('output').value = converted || 'No valid links found.';
+    }
+  </script>
+
+</body>
+</html>
