@@ -126,6 +126,9 @@
 
         <p><strong>Negara:</strong> <span id="country"></span></p>
 
+        <p><strong>Tahun:</strong> <span id="year"></span></p>
+
+
         <div class="row">
           <p><strong>Sinopsis:</strong></p>
           <button onclick="translateOverview()">Translate ke Indonesia</button>
@@ -171,6 +174,8 @@
       document.getElementById("poster").src = imageUrl;
       document.getElementById("poster").setAttribute("data-img", imageUrl);
       document.getElementById("genre").innerText = detail.genres.map(g => g.name).join(', ');
+      const releaseYear = new Date(detail.release_date).getFullYear();
+      document.getElementById("year").innerText = releaseYear;
       document.getElementById("country").innerText = detail.production_countries.map(c => c.name).join(', ');
       document.getElementById("overview").value = originalOverview || "(Sinopsis tidak tersedia)";
       document.getElementById("movieResult").style.display = "block";
