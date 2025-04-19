@@ -152,7 +152,7 @@
       if (!movie) return alert("Film tidak ditemukan!");
 
       // Ambil detail versi Indonesia
-      const detailUrlID = `https://api.themoviedb.org/3/movie/${movie.id}?api_key=${apiKey}&language=id-ID`;
+      const detailUrlID = `https://api.themoviedb.org/3/movie/${movie.id}?api_key=${apiKey}&language=en-US`;
       let detail = await (await fetch(detailUrlID)).json();
 
       // Fallback ke English jika overview kosong
