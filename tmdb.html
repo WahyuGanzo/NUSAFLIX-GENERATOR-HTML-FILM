@@ -179,21 +179,18 @@
     function copyImage() {
       const imgURL = document.getElementById("poster").getAttribute("data-img");
       navigator.clipboard.writeText(imgURL).then(() => {
-        alert("URL gambar berhasil disalin!");
       });
     }
 
     function copyGenre() {
       const genre = document.getElementById("genre").innerText;
       navigator.clipboard.writeText(genre).then(() => {
-        alert("Genre berhasil disalin!");
       });
     }
 
     function copyOverview() {
       const overview = document.getElementById("overview").value;
       navigator.clipboard.writeText(overview).then(() => {
-        alert("Sinopsis berhasil disalin!");
       });
     }
 
