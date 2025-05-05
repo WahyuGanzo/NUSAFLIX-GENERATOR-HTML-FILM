@@ -113,6 +113,8 @@
       const sinopsis = document.getElementById('sinopsis').value;
 
       const html = `
+      <div class="separator" style="clear: both;"><a href="${poster}" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="480" data-original-width="940" src="${poster}"/></a></div><br>
+
 <h3 style="text-align: center;">Nonton ${judul} Film Subtitle Indonesia - Streaming / Download Full HD</h3>
 <iframe allowfullscreen="true" frameborder="0" scrolling="0" src="${iframe}" class="areanonton"></iframe><br>
 
@@ -121,9 +123,6 @@
   </a><br>
 
   <div class="infonusaflix">
-    <div class="poster-nusaflix">
-      <img src="${poster}" alt="Poster Nusaflix">
-    </div>
     <div class="detail-nusaflix">
       <h2 class="judul-nusaflix">${judul}</h2>
       <p class="genre-nusaflix">Genre: ${genre}</p>
