@@ -84,6 +84,8 @@
 
 <label>Genre</label> <input type="text" id="genre" />
 
+<label>Negara</label> <input type="text" id="negara" />
+
 <label>Link Poster (Gambar)</label> <input type="text" id="poster" />
 
 <label>Link Iframe Player</label> <input type="text" id="iframe" />
@@ -107,6 +109,7 @@
     function generateHTML() {
       const judul = document.getElementById('judul').value;
       const genre = document.getElementById('genre').value;
+      const negara = document.getElementById('negara').value;
       const poster = document.getElementById('poster').value;
       const iframe = document.getElementById('iframe').value;
       const download= document.getElementById('download').value;
@@ -125,7 +128,7 @@
   <div class="infonusaflix">
     <div class="detail-nusaflix">
       <h2 class="judul-nusaflix">${judul}</h2>
-      <p class="genre-nusaflix">Genre: ${genre}</p>
+      <p class="genre-nusaflix">Genre: ${genre}, ${negara}</p>
       <p class="sinopsis-nusaflix">
         ${sinopsis}
       </p>
